@@ -1,0 +1,951 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 25 March 2009), see www.w3.org" />
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="../../assets/ico/favicon.ico" />
+
+  <title>Region 8 Retreat Registration</title><!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <!-- Custom styles for this template -->
+  <!-- Just for debugging purposes. Don't actually copy this line! -->
+  <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <style type="text/css">
+    
+    body {
+        background-color: #eee;
+		overflow:-moz-scrollbars-vertical;
+    }
+	
+	.moreperson {
+		display: none;
+	}
+	
+	.slideToReveal { display: none; }
+	
+	.btnAddPerson {
+		background-image: url("../img/glyphicons-halflings.png");
+		background-repeat: no-repeat;
+		display: inline-block;
+		height: 14px;
+		line-height: 14px;
+		margin-top: 1px;
+		vertical-align: text-top;
+	}
+
+    #MAIN {
+        max-width: 550px;
+        padding: 19px 29px 29px;
+        margin: 0 auto 20px;
+        border: 1px solid #e5e5e5;
+        background-color: #fff;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+      .form-signin .form-signin-heading,
+      .form-signin .checkbox {
+        margin-bottom: 10px;
+      }
+      .form-signin input[type="text"],
+      .form-signin input[type="password"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
+	  
+	  .totalCost {
+		font-size: 30px;
+		color: green;
+		font-weight: bold;
+		text-align: left;
+	  }
+	  
+	  .participantInfo { border-top: dotted 1px; padding-top: 8px; }
+	  .attendingDay { width: 64px; }
+	  .attendingLunch { width: 101px; }
+
+    </style>
+
+    
+</head>
+
+<body>
+	<script>
+	
+	function firstname(x,errid) {
+		//var val = document.getElementById("$(x).value").value;
+		var val = x.value;
+		if (/[^A-Z a-z]+/.test(val)){
+		//document.getElementById("fnerr").innerHTML='* Please input a correct First Name';
+		errid.innerHTML='* Please input a correct First Name';
+		//document.getElementById("nameparticipant1").value="";
+		val.value="";
+		//document.getElementById("fnerr").style.display='block';
+		errid.style.display='block';
+		return false;
+		} 
+		if(val==""){
+		//document.getElementById("fnerr").innerHTML='* The above field cannot be empty';
+		errid.innerHTML='* The above field cannot be empty';
+		//document.getElementById("nameparticipant1").value="";
+		val.value="";
+		errid.style.display='block';//visible=block(display)
+		return false;
+		}
+		/*document.getElementById("fnerr")*/errid.style.display='none'; //hidden=none
+	}
+	
+	function lastname() {
+		var val = document.getElementById("groupfamilyname").value;
+		var str = /[^A-Z a-z]+/;
+		if (val.match(str)){
+		document.getElementById("lnerr").innerHTML='* Please input a correct Last Name';
+		document.getElementById("groupfamilyname").value="";
+		document.getElementById("lnerr").style.display='block';
+		return false;
+		} 
+		if(val==""){
+		document.getElementById("lnerr").innerHTML='* The above field cannot be empty';
+		document.getElementById("groupfamilyname").value="";
+		document.getElementById("lnerr").style.display='block';
+		return false;
+		}
+		document.getElementById("lnerr").style.display='none';
+	}
+	
+	function phoneno() {
+		var val = document.getElementById("phone").value;
+		if (/[^0-9]+/.test(val) || val.length<10){
+		document.getElementById("perr").innerHTML='* Please enter a vaild number';
+		document.getElementById("phone").value="";
+		document.getElementById("perr").style.display='block';
+		return false;
+		}
+		if(val==""){
+		document.getElementById("perr").innerHTML='* The above field cannot be empty';
+		document.getElementById("phone").value="";
+		document.getElementById("perr").style.display='block';
+		return false;
+		}		
+		document.getElementById("perr").style.display='none';
+	}
+	
+	function emailid() {
+		var x = document.getElementById("email").value;
+		var atpos = x.indexOf("@");
+		var dotpos = x.lastIndexOf(".");
+		if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+			document.getElementById("eerr").innerHTML='* Please input a valid email ID';
+			document.getElementById("email").value="";
+			document.getElementById("eerr").style.display='block';
+			return false;
+		}
+		if(x==""){
+			document.getElementById("eerr").innerHTML='* The above field cannot be empty';
+			document.getElementById("email").value="";
+			document.getElementById("eerr").style.display='block';
+			return false;
+		}
+	document.getElementById("eerr").style.display='none';
+	}
+	
+	function validfunc(){
+		var b1= true;
+		b1=firstname(document.getElementById("nameparticipant1").value,fnerr);
+		var b2=true;
+		b2=lastname();
+		var b3=true;
+		b3=emailid();
+		var b4=true;
+		b4=phoneno();
+			
+		if(b1==false || b2==false || b3==false || b4==false){
+					
+			return false;			
+		}
+		/*document.getElementById("comform1").style.display='none';
+		document.getElementById("comform2").style.display='block';
+		document.getElementById("report1").style.display='none';
+		document.getElementById("report2").style.display='none';
+		window.scrollBy(0,-5000);*/
+
+	}
+	
+	</script>
+
+  <div class="container">
+    <div class="row .row-centered">
+      <div class=".col-md-4 .col-md-offset-4" >
+	  
+	   <!-- ARV edited action and method  "https://www.paypal.com/cgi-bin/webscr"-->
+	   <!-- <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" class="form-horizontal" id="MAIN"> -->
+	   <form onsubmit="getFormAction(this);" method="post" class="form-horizontal" id="MAIN">
+	   
+			  
+		<!--<div class="form-horizontal" id="MAIN"> -->
+		<fieldset>
+
+		<!-- ARV -->
+		<!-- Identify your business so that you can collect the payments.region8service@gmail.com herschelgomez@xyzzyu.com-->
+		<input type="hidden" name="business" value="merchant@selling.com">
+
+		<!-- Specify a Buy Now button. -->
+		<input type="hidden" name="cmd" value="_xclick">
+		<!-- ARV -->
+
+		<!-- Form Name -->
+		<legend>Pacific Region South - Region 8 - 2014 Conference Registration</legend>
+
+		<!-- Text input  First Name -->
+		<div class="control-group">
+		  <label class="control-label" for="nameparticipant1">First Name</label>
+		  <div class="controls">
+			<input id="nameparticipant1" name="nameparticipant1" onblur="firstname(this,fnerr)" type="text" placeholder="Your First Name" class="input-block-level">
+		  </div>
+		</div>
+
+		<label  style="color:#aa0000; margin-left:180px" id="fnerr"></label>
+		
+		<!-- Text input   Last/Family Name -->
+		<div class="control-group">
+		  <label class="control-label" for="groupfamilyname">Group/Family Name</label>
+		  <div class="controls">
+			<input id="groupfamilyname" name="groupfamilyname" onblur="lastname()" type="text" placeholder="List ONE last name to use for all family members" class="input-block-level">
+		  </div>
+		</div>
+		
+		<label  style="color:#aa0000; margin-left:180px" id="lnerr"></label>
+
+		<!-- Text input  Address -->
+		<div class="control-group">
+		  <label class="control-label" for="address">Address</label>
+		  <div class="controls">                     
+			<input id="address1" name="address1" type="text" placeholder="House/bldg number and Street name, Apt/Suite" class="input-block-level"></input>
+		  </div>
+		</div>
+
+		<!-- Text input  City -->
+		<div class="control-group pull-left">
+		  <label class="control-label" for="city">City</label>
+		  <div class="controls">
+			<input id="city" name="city" type="text" placeholder="Ex: Los Angeles" class="input-medium">
+		  </div>
+		</div>
+
+		<!-- Text input  State -->
+		<div class="control-group pull-right">
+		  <label class="control-label-auto-left" for="state" style="float:left;">State</label>
+		  <div style="float:left; margin-left: 10px;">
+			<select id="state" name="state" class="input-medium">
+				<option value="AL">Alabama</option>
+				<option value="AK">Alaska</option>
+				<option value="AZ">Arizona</option>
+				<option value="AR">Arkansas</option>
+				<option value="CA" selected="selected">California</option>
+				<option value="CO">Colorado</option>
+				<option value="CT">Connecticut</option>
+				<option value="DE">Delaware</option>
+				<option value="DC">District Of Columbia</option>
+				<option value="FL">Florida</option>
+				<option value="GA">Georgia</option>
+				<option value="HI">Hawaii</option>
+				<option value="ID">Idaho</option>
+				<option value="IL">Illinois</option>
+				<option value="IN">Indiana</option>
+				<option value="IA">Iowa</option>
+				<option value="KS">Kansas</option>
+				<option value="KY">Kentucky</option>
+				<option value="LA">Louisiana</option>
+				<option value="ME">Maine</option>
+				<option value="MD">Maryland</option>
+				<option value="MA">Massachusetts</option>
+				<option value="MI">Michigan</option>
+				<option value="MN">Minnesota</option>
+				<option value="MS">Mississippi</option>
+				<option value="MO">Missouri</option>
+				<option value="MT">Montana</option>
+				<option value="NE">Nebraska</option>
+				<option value="NV">Nevada</option>
+				<option value="NH">New Hampshire</option>
+				<option value="NJ">New Jersey</option>
+				<option value="NM">New Mexico</option>
+				<option value="NY">New York</option>
+				<option value="NC">North Carolina</option>
+				<option value="ND">North Dakota</option>
+				<option value="OH">Ohio</option>
+				<option value="OK">Oklahoma</option>
+				<option value="OR">Oregon</option>
+				<option value="PA">Pennsylvania</option>
+				<option value="RI">Rhode Island</option>
+				<option value="SC">South Carolina</option>
+				<option value="SD">South Dakota</option>
+				<option value="TN">Tennessee</option>
+				<option value="TX">Texas</option>
+				<option value="UT">Utah</option>
+				<option value="VT">Vermont</option>
+				<option value="VA">Virginia</option>
+				<option value="WA">Washington</option>
+				<option value="WV">West Virginia</option>
+				<option value="WI">Wisconsin</option>
+				<option value="WY">Wyoming</option>
+			</select>		
+			
+		  </div>
+		</div>
+
+		<!-- Text input  Zip Code-->
+		<div class="control-group">
+		  <label class="control-label" for="zip">Zip Code</label>
+		  <div class="controls">
+			<input id="zip" name="zip" type="text" placeholder="Ex: 90210" class="input-block-level">
+		  </div>
+		</div>
+
+		<!-- Text input Primary Phone -->
+		<div class="control-group">
+		  <label class="control-label" for="phone">Primary Phone #</label>
+		  <div class="controls">
+			<input id="phone" name="phone" onblur="phoneno()" type="text" placeholder="(555) 555 - 5555" class="input-block-level">
+		  </div>
+		</div>
+		
+		<label  style="color:#aa0000; margin-left:180px" id="perr"></label>
+
+		<!-- Text input Alternate Phone -->
+		<div class="control-group">
+		  <label class="control-label" for="alternatephone">Alternate Phone #</label>
+		  <div class="controls">
+			<input id="alternatephone" name="alternatephone" type="text" placeholder="(555) 555 - 5555" class="input-block-level">
+		  </div>
+		</div>
+
+		<!-- Text input  Email address -->
+		<div class="control-group">
+		  <label class="control-label" for="email">Email Address</label>
+		  <div class="controls">
+			<input id="email" name="email" onblur="emailid()" type="text" placeholder="your.name@example.com" class="input-block-level">
+			
+		  </div>
+		</div>
+		
+		<label  style="color:#aa0000; margin-left:180px" id="eerr"></label>
+
+		<!-- Select Region 8 Sai Center-->
+		<div class="control-group">
+		  <label class="control-label" for="saicenter">Sai Center</label>
+		  <div class="controls">
+			<select id="saicenter" name="saicenter" class="input-block-level" text="Please Select...">
+			  <option selected>Please Select...</option>
+			  <option>Arcadia</option>
+			  <option>Atascadero</option>
+			  <option>Camarillo</option>
+			  <option>Chatsworth</option>
+			  <option>Glendale</option>
+			  <option>Hemet</option>
+			  <option>Hollywood</option>
+			  <option>Karuna</option>
+			  <option>Kona-Hawaii Sai Group</option>
+			  <option>Lakewood</option>
+			  <option>Las Vegas</option>
+			  <option>Lomita</option>
+			  <option>Los Angeles Center</option>
+			  <option>Maui-Hawaii</option>
+			  <option>Mission Viejo</option>
+			  <option>North East San Diego</option>
+			  <option>Oahu-Hawaii</option>
+			  <option>Ojai</option>
+			  <option>Puna</option>
+			  <option>San Diego - Point Loma</option>
+			  <option>San Diego- North County</option>
+			  <option>San Marco Sai Group</option>
+			  <option>Santa Barbara</option>
+			  <option>Santa Maria</option>
+			  <option>Thousand Oaks</option>
+			  <option>Torrance</option>
+			  <option>Torrance-South Bay</option>
+			  <option>Tustin</option>
+			  <option>Upland</option>
+			  <option>Other</option>
+			</select>
+		  </div>
+		</div>
+
+
+		<!-- Specify days attending & meal request for main registrant -->
+		<div class="control-group" style="margin-top:4px;">
+		  <label class="control-label" for="daysattending">Days Attending</label>
+		  
+		  <!-- Saturday -->
+		  <div class="controls">
+			<label class="checkbox inline attendingDay" for="attending_sat1">
+			  <input type="checkbox" name="attending_sat1" id="attending_sat1" value="Saturday" onclick="hideShowOther(this,meals_sat1);">
+			  Saturday
+			</label>
+			<div id="meals_sat1" class="slideToReveal">
+				<span class="control-label-auto-left">Select meals: &nbsp;</span>
+				<label class="checkbox inline attendingLunch" for="lunch_sat1">
+				  <input type="checkbox" name="lunch_sat1" id="lunch_sat1" value="lunch_sat1">
+				  Saturday Lunch
+				</label>
+				<label class="checkbox inline" for="box_sat1">
+				  <input type="checkbox" name="box_sat1" id="box_sat1" value="box_sat1">
+				  Saturday Dinner
+				</label>
+			</div>
+		  </div>		  
+		  
+		  <!-- Sunday -->
+		  <div class="controls" style="margin-bottom:8px;">
+			<label class="checkbox inline attendingDay" for="attending_sun1">
+				<input type="checkbox" name="attending_sun1" id="attending_sun1" value="Sunday" onclick="hideShowOther(this,meals_sun1);">
+				Sunday
+			</label>
+			<div id="meals_sun1" class="slideToReveal">
+				<span class="control-label-auto-left">Select meals: &nbsp;</span>
+				<label class="checkbox inline attendingLunch" for="lunch_sun1">
+					<input type="checkbox" name="lunch_sun1" id="lunch_sun1" value="lunch_sun1">
+					Sunday Lunch
+				</label>
+				<label class="checkbox inline" for="box_sun1">
+					<input type="checkbox" name="box_sun1" id="box_sun1" value="box_sun1">
+					Sunday Dinner
+				</label>
+		  </div>		  
+		</div>
+
+		<!-- Participant 2 -->
+		<div class="control-group" >
+		  <div id="addpersonbutton2" onclick="addperson(2)" class="btn"><i  class="btnAddPerson">Add a family member or other person</i></div>
+		  <div id="removepersonbutton2" onclick="removeperson(2)" class="btn slideToReveal" style="float: right;"><i  class="icon-minus-sign"></i></div>
+		  <div class="moreperson participantInfo"  id="person2">
+			  <label class="control-label" for="nameparticipant2">Name</label>
+			  <div class="controls">
+				<input style="width: 200px;;" id="nameparticipant2" onblur="firstname(this,fnerr2)" name="nameparticipant2" type="text" placeholder="Name of Second Member" class="input-block-level">
+			  </div>
+			  <label  style="color:#aa0000; margin-left:180px" id="fnerr2"></label>
+			  
+			  <div class="controls">
+				  <div class="row-fluid">
+					<label class="checkbox inline" for="ischild2">
+					  <input type="checkbox" name="ischild2" id="ischild2" value="Child" onclick="hideShowOther(this,childstats2);">Child/Under 19&nbsp;
+					</label>
+					<div id="childstats2" class="inline" style="display:none;">
+						<select id="ageparticipant2" name="ageparticipant2" class="age input-small" style="margin-top:4px;">
+						  <option selected>Age..</option>
+						  <option>18</option>
+						  <option>17</option>
+						  <option>16</option>
+						  <option>15</option>
+						  <option>14</option>
+						  <option>13</option>
+						  <option>12</option>
+						  <option>11</option>
+						  <option>10</option>
+						  <option>9</option>
+						  <option>8</option>
+						  <option>7</option>
+						  <option>6</option>
+						</select>
+						<label class="radio inline"><input type="radio" name="sex_participant2" value="M">Boy</label>
+						<label class="radio inline"><input type="radio" name="sex_participant2" value="F">Girl</label>
+					</div>
+				  </div>
+			  </div>
+			  
+			  <div class="control-group" style="margin-top:4px;">
+				  <label class="control-label" for="daysattending">Days Attending & Meals</label>
+				  <div class="controls">
+					<label class="checkbox inline attendingDay" for="attending_sat2">
+					  <input type="checkbox" name="attending_sat2" id="attending_sat2" value="Saturday" onclick="enableOther(this,lunch_sat2); enableOther(this,box_sat2);">
+					  Saturday
+					</label>
+					<label class="checkbox inline attendingLunch" for="lunch_sat2">
+					  <input type="checkbox" name="lunch_sat2" id="lunch_sat2" value="lunch_sat2" disabled="true">
+					  Saturday Lunch
+					</label>
+					<label class="checkbox inline" for="box_sat2">
+					  <input type="checkbox" name="box_sat2" id="box_sat2" value="box_sat2" disabled="true">
+					  Saturday Dinner
+					</label>
+				  </div>		  
+				  
+				  <div class="controls">
+					<label class="checkbox inline attendingDay" for="attending_sun2">
+						<input type="checkbox" name="attending_sun2" id="attending_sun2" value="Sunday" onclick="enableOther(this,lunch_sun2); enableOther(this,box_sun2);">
+						Sunday
+					</label>
+					
+					<label class="checkbox inline attendingLunch" for="lunch_sun2">
+						<input type="checkbox" name="lunch_sun2" id="lunch_sun2" value="lunch_sun2" disabled="true">
+						Sunday Lunch
+					</label>
+					<label class="checkbox inline" for="box_sun2">
+						<input type="checkbox" name="box_sun2" id="box_sun2" value="box_sun2" disabled="true">
+						Sunday Dinner
+					</label>
+				  </div>		  
+			  </div>
+		  
+		  </div>
+		</div>
+
+
+		<!-- Participant 3 -->
+		<div class="control-group" >
+		  <div id="addpersonbutton3" onclick="addperson(3)" class="btn slideToReveal"><i  class="btnAddPerson">Add a family member or other person</i></div>
+		  <div id="removepersonbutton3" onclick="removeperson(3)" class="btn slideToReveal" style="float: right;"><i  class="icon-minus-sign"></i></div>
+		  
+		  <div class="moreperson participantInfo"  id="person3">
+			  <label class="control-label" for="nameparticipant3">Name</label>
+			  <div class="controls">
+				<input style="width: 200px;;" id="nameparticipant3" onblur="firstname(this,fnerr3)" name="nameparticipant3" type="text" placeholder="Name of Third Member" class="input-block-level">
+			  </div>
+			  
+			  <label  style="color:#aa0000; margin-left:180px" id="fnerr3"></label>
+			  
+			  <div class="controls">
+				  <div class="row-fluid">
+					<label class="checkbox inline" for="ischild3">
+					  <input type="checkbox" name="ischild3" id="ischild3" value="Child" onclick="hideShowOther(this,childstats3);">Child/Under 19&nbsp;
+					</label>
+					<div id="childstats3" class="inline" style="display:none;">
+						<select id="ageparticipant3" name="ageparticipant3" class="age input-small" style="margin-top:4px;">
+						  <option selected>Age..</option>
+						  <option>18</option>
+						  <option>17</option>
+						  <option>16</option>
+						  <option>15</option>
+						  <option>14</option>
+						  <option>13</option>
+						  <option>12</option>
+						  <option>11</option>
+						  <option>10</option>
+						  <option>9</option>
+						  <option>8</option>
+						  <option>7</option>
+						  <option>6</option>
+						</select>
+						<label class="radio inline"><input type="radio" name="sex_participant3" value="M">Boy</label>
+						<label class="radio inline"><input type="radio" name="sex_participant3" value="F">Girl</label>
+					</div>
+				  </div>
+			  </div>
+			  
+			  <div class="control-group" style="margin-top:4px;">
+				  <label class="control-label" for="daysattending">Days Attending & Meals</label>
+				  <div class="controls">
+					<label class="checkbox inline attendingDay" for="attending_sat3">
+					  <input type="checkbox" name="attending_sat3" id="attending_sat3" value="Saturday" onclick="enableOther(this,lunch_sat3); enableOther(this,box_sat3);">
+					  Saturday
+					</label>
+					<label class="checkbox inline attendingLunch" for="lunch_sat3">
+					  <input type="checkbox" name="lunch_sat3" id="lunch_sat3" value="lunch_sat3" disabled="true">
+					  Saturday Lunch
+					</label>
+					<label class="checkbox inline" for="box_sat3">
+					  <input type="checkbox" name="box_sat3" id="box_sat3" value="box_sat3" disabled="true">
+					  Saturday Dinner
+					</label>
+				  </div>		  
+				  
+				  <div class="controls">
+					<label class="checkbox inline attendingDay" for="attending_sun3">
+						<input type="checkbox" name="attending_sun3" id="attending_sun3" value="Sunday" onclick="enableOther(this,lunch_sun3); enableOther(this,box_sun3);">
+						Sunday
+					</label>
+					
+					<label class="checkbox inline attendingLunch" for="lunch_sun3">
+						<input type="checkbox" name="lunch_sun3" id="lunch_sun3" value="lunch_sun3" disabled="true">
+						Sunday Lunch
+					</label>
+					<label class="checkbox inline" for="box_sun3">
+						<input type="checkbox" name="box_sun3" id="box_sun3" value="box_sun3" disabled="true">
+						Sunday Dinner
+					</label>
+				  </div>		  
+			  </div>
+		  
+		  </div>
+		</div>
+
+
+		<!-- Participant 4 -->
+		<div class="control-group" >
+		  <div id="addpersonbutton4" onclick="addperson(4)" class="btn slideToReveal"><i  class="btnAddPerson">Add a family member or other person</i></div>
+		  <div id="removepersonbutton4" onclick="removeperson(4)" class="btn slideToReveal" style="float: right;"><i  class="icon-minus-sign"></i></div>
+		  
+		  <div class="moreperson participantInfo"  id="person4">
+			  <label class="control-label" for="nameparticipant4">Name</label>
+			  <div class="controls">
+				<input style="width: 200px;;" id="nameparticipant4" onblur="firstname(this,fnerr4)" name="nameparticipant4" type="text" placeholder="Name of Fourth Member" class="input-block-level">
+			  </div>
+			  
+			  <label  style="color:#aa0000; margin-left:180px" id="fnerr4"></label>
+			  
+			  <div class="controls">
+				  <div class="row-fluid">
+					<label class="checkbox inline" for="ischild4">
+					  <input type="checkbox" name="ischild4" id="ischild4" value="Child" onclick="hideShowOther(this,childstats3);">Child/Under 19&nbsp;
+					</label>
+					<div id="childstats4" class="inline" style="display:none;">
+						<select id="ageparticipant4" name="ageparticipant4" class="age input-small" style="margin-top:4px;">
+						  <option selected>Age..</option>
+						  <option>18</option>
+						  <option>17</option>
+						  <option>16</option>
+						  <option>15</option>
+						  <option>14</option>
+						  <option>13</option>
+						  <option>12</option>
+						  <option>11</option>
+						  <option>10</option>
+						  <option>9</option>
+						  <option>8</option>
+						  <option>7</option>
+						  <option>6</option>
+						</select>
+						<label class="radio inline"><input type="radio" name="sex_participant4" value="M">Boy</label>
+						<label class="radio inline"><input type="radio" name="sex_participant4" value="F">Girl</label>
+					</div>
+				  </div>
+			  </div>
+			  
+			  <div class="control-group" style="margin-top:4px;">
+				  <label class="control-label" for="daysattending">Days Attending & Meals</label>
+				  <div class="controls">
+					<label class="checkbox inline attendingDay" for="attending_sat4">
+					  <input type="checkbox" name="attending_sat4" id="attending_sat4" value="Saturday" onclick="enableOther(this,lunch_sat4); enableOther(this,box_sat4);">
+					  Saturday
+					</label>
+					<label class="checkbox inline attendingLunch" for="lunch_sat4">
+					  <input type="checkbox" name="lunch_sat4" id="lunch_sat4" value="lunch_sat4" disabled="true">
+					  Saturday Lunch
+					</label>
+					<label class="checkbox inline" for="box_sat4">
+					  <input type="checkbox" name="box_sat4" id="box_sat4" value="box_sat4" disabled="true">
+					  Saturday Dinner
+					</label>
+				  </div>		  
+				  
+				  <div class="controls">
+					<label class="checkbox inline attendingDay" for="attending_sun4">
+						<input type="checkbox" name="attending_sun4" id="attending_sun4" value="Sunday" onclick="enableOther(this,lunch_sun4); enableOther(this,box_sun4);">
+						Sunday
+					</label>
+					
+					<label class="checkbox inline attendingLunch" for="lunch_sun4">
+						<input type="checkbox" name="lunch_sun4" id="lunch_sun4" value="lunch_sun4" disabled="true">
+						Sunday Lunch
+					</label>
+					<label class="checkbox inline" for="box_sun4">
+						<input type="checkbox" name="box_sun4" id="box_sun4" value="box_sun4" disabled="true">
+						Sunday Dinner
+					</label>
+				  </div>		  
+			  </div>
+		  
+		  </div>
+		</div>
+
+
+		<!-- Participant 5 -->
+		<div class="control-group" >
+		  <div id="addpersonbutton5" onclick="addperson(5)" class="btn slideToReveal"><i  class="btnAddPerson">Add a family member or other person</i></div>
+		  <div id="removepersonbutton5" onclick="removeperson(5)" class="btn slideToReveal" style="float: right;"><i  class="icon-minus-sign"></i></div>
+		  
+		  <div class="moreperson participantInfo"  id="person5">
+			  <label class="control-label" for="nameparticipant5">Name</label>
+			  <div class="controls">
+				<input style="width: 200px;;" id="nameparticipant5" onblur="firstname(this,fnerr5)" name="nameparticipant5" type="text" placeholder="Name of Fifth Member" class="input-block-level">
+			  </div>
+			  <label  style="color:#aa0000; margin-left:180px" id="fnerr5"></label>
+			  
+			  <div class="controls">
+				  <div class="row-fluid">
+					<label class="checkbox inline" for="ischild5">
+					  <input type="checkbox" name="ischild5" id="ischild5" value="Child" onclick="hideShowOther(this,childstats5);">Child/Under 19&nbsp;
+					</label>
+					<div id="childstats5" class="inline" style="display:none;">
+						<select id="ageparticipant5" name="ageparticipant5" class="age input-small" style="margin-top:4px;">
+						  <option selected>Age..</option>
+						  <option>18</option>
+						  <option>17</option>
+						  <option>16</option>
+						  <option>15</option>
+						  <option>14</option>
+						  <option>13</option>
+						  <option>12</option>
+						  <option>11</option>
+						  <option>10</option>
+						  <option>9</option>
+						  <option>8</option>
+						  <option>7</option>
+						  <option>6</option>
+						</select>
+						<label class="radio inline"><input type="radio" name="sex_participant5" value="M">Boy</label>
+						<label class="radio inline"><input type="radio" name="sex_participant5" value="F">Girl</label>
+					</div>
+				  </div>
+			  </div>
+			  
+			  <div class="control-group" style="margin-top:4px;">
+				  <label class="control-label" for="daysattending">Days Attending & Meals</label>
+				  <div class="controls">
+					<label class="checkbox inline attendingDay" for="attending_sat5">
+					  <input type="checkbox" name="attending_sat5" id="attending_sat5" value="Saturday" onclick="enableOther(this,lunch_sat5); enableOther(this,box_sat5);">
+					  Saturday
+					</label>
+					<label class="checkbox inline attendingLunch" for="lunch_sat5">
+					  <input type="checkbox" name="lunch_sat5" id="lunch_sat5" value="lunch_sat5" disabled="true">
+					  Saturday Lunch
+					</label>
+					<label class="checkbox inline" for="box_sat5">
+					  <input type="checkbox" name="box_sat5" id="box_sat5" value="box_sat5" disabled="true">
+					  Saturday Dinner
+					</label>
+				  </div>		  
+				  
+				  <div class="controls">
+					<label class="checkbox inline attendingDay" for="attending_sun5">
+						<input type="checkbox" name="attending_sun5" id="attending_sun5" value="Sunday" onclick="enableOther(this,lunch_sun5); enableOther(this,box_sun5);">
+						Sunday
+					</label>
+					
+					<label class="checkbox inline attendingLunch" for="lunch_sun5">
+						<input type="checkbox" name="lunch_sun5" id="lunch_sun5" value="lunch_sun5" disabled="true">
+						Sunday Lunch
+					</label>
+					<label class="checkbox inline" for="box_sun5">
+						<input type="checkbox" name="box_sun5" id="box_sun5" value="box_sun5" disabled="true">
+						Sunday Dinner
+					</label>
+				  </div>		  
+			  </div>
+		  
+		  </div>
+		</div>
+
+
+		<!-- Participant 6 -->
+		<div class="control-group" >
+	  <div id="addpersonbutton6" onclick="addperson(6)" class="btn slideToReveal"><i  class="btnAddPerson">Add a family member or other person</i></div>
+	  <div id="removepersonbutton6" onclick="removeperson(6)" class="btn slideToReveal" style="float: right;"><i  class="icon-minus-sign"></i></div>
+	  
+	  <div class="moreperson participantInfo"  id="person6">
+		  <label class="control-label" for="nameparticipant6">Name</label>
+		  <div class="controls">
+			<input style="width: 200px;;" id="nameparticipant6" onblur="firstname(this,fnerr6)" name="nameparticipant6" type="text" placeholder="Name of Sixth Member" class="input-block-level">
+		  </div>
+		  <label  style="color:#aa0000; margin-left:180px" id="fnerr6"></label>
+		  <div class="controls">
+			  <div class="row-fluid">
+				<label class="checkbox inline" for="ischild6">
+				  <input type="checkbox" name="ischild6" id="ischild6" value="Child" onclick="hideShowOther(this,childstats6);">Child/Under 19&nbsp;
+				</label>
+				<div id="childstats6" class="inline" style="display:none;">
+					<select id="ageparticipant6" name="ageparticipant6" class="age input-small" style="margin-top:4px;">
+					  <option selected>Age..</option>
+					  <option>18</option>
+					  <option>17</option>
+					  <option>16</option>
+					  <option>15</option>
+					  <option>14</option>
+					  <option>13</option>
+					  <option>12</option>
+					  <option>11</option>
+					  <option>10</option>
+					  <option>9</option>
+					  <option>8</option>
+					  <option>7</option>
+					  <option>6</option>
+					</select>
+					<label class="radio inline"><input type="radio" name="sex_participant6" value="M">Boy</label>
+					<label class="radio inline"><input type="radio" name="sex_participant6" value="F">Girl</label>
+				</div>
+			  </div>
+		  </div>
+		  
+		  <div class="control-group" style="margin-top:4px;">
+			  <label class="control-label" for="daysattending">Days Attending & Meals</label>
+			  <div class="controls">
+				<label class="checkbox inline attendingDay" for="attending_sat6">
+				  <input type="checkbox" name="attending_sat6" id="attending_sat6" value="Saturday" onclick="enableOther(this,lunch_sat6); enableOther(this,box_sat6);">
+				  Saturday
+				</label>
+				<label class="checkbox inline attendingLunch" for="lunch_sat6">
+				  <input type="checkbox" name="lunch_sat6" id="lunch_sat6" value="lunch_sat6" disabled="true">
+				  Saturday Lunch
+				</label>
+				<label class="checkbox inline" for="box_sat6">
+				  <input type="checkbox" name="box_sat6" id="box_sat6" value="box_sat6" disabled="true">
+				  Saturday Dinner
+				</label>
+			  </div>		  
+			  
+			  <div class="controls">
+				<label class="checkbox inline attendingDay" for="attending_sun6">
+					<input type="checkbox" name="attending_sun6" id="attending_sun6" value="Sunday" onclick="enableOther(this,lunch_sun6); enableOther(this,box_sun6);">
+					Sunday
+				</label>
+				
+				<label class="checkbox inline attendingLunch" for="lunch_sun6">
+					<input type="checkbox" name="lunch_sun6" id="lunch_sun6" value="lunch_sun6" disabled="true">
+					Sunday Lunch
+				</label>
+				<label class="checkbox inline" for="box_sun6">
+					<input type="checkbox" name="box_sun6" id="box_sun6" value="box_sun6" disabled="true">
+					Sunday Dinner
+				</label>
+			  </div>		  
+		  </div>
+	  
+	  </div>
+	</div>
+
+		<!-- Cost-->
+		<div class="control-group">
+		  <label class="control-label" for="totalcost">Total Cost</label>
+		  <div class="controls">
+		  <label class="totalCost" id="totalcost" name="totalcost">$0</label>
+		  </div>
+		</div>
+		
+		<!-- Button -->
+		<div class="control-group">
+		  <label class="control-label" for="updateCost"></label>
+		  <div class="controls">
+			<div onclick="updateCost()" id="updateCost" name="updateCost" class="btn btn-primary">Update</div>
+		  </div>
+		</div>
+	
+
+		<!-- Button -->
+		<div class="control-group">
+		  <label class="control-label" for="submitbutton"></label>
+		  <div class="controls">
+			<div onclick="confirmRegistration(this,selectPayment);" id="submitbutton" name="submitbutton" class="btn btn-primary">Confirm Registration</div>
+		  </div>
+		</div>
+
+		<!-- Payment  (iMethodnline) -->
+		<div class="slideToReveal" id="selectPayment">
+			<div class="control-group">
+			  <label class="control-label" for="payment">Select Payment Method</label>
+			  <div class="controls">
+				<label class="radio inline" for="radios-0">
+				  <input type="radio" name="payment" id="radios-0" value="paypal" checked="checked">
+				  Credit/Debit Card/Paypal
+				</label>
+				<label class="radio inline" for="radios-1">
+				  <input type="radio" name="payment" id="radios-1" value="check">
+				  By Mail
+				</label>
+				<label class="radio inline" for="radios-2">
+				  <input type="radio" name="payment" id="radios-2" value="other">
+				  Other
+				</label>
+			  </div>
+			</div>
+		
+			<!-- Paypal -->
+			<input type="hidden" name="item_name" value="Sai Conference 2014 Registration">
+			<input type="hidden" name="amount" id="test_id" value="0">
+			<input type="hidden" name="currency_code" value="USD">	
+			<input type='hidden' name='return' value='http://www.region8saicenters.org/sai-con-2014/demo/final.html'>
+
+			<div class="control-group">
+			  <label class="control-label" for="submitbutton1"></label>
+			  <div class="controls">
+				<button type="submit" id="submitbutton1" name="submitbutton1" class="btn btn-primary">Continue &raquo;</button>
+			  </div>
+			</div>
+		</div>
+
+		</fieldset>
+
+
+	  </form>
+	  
+      </div>
+    </div>
+  </div>
+  
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+  <script src="./js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+  <script src="postToGoogle.js"></script>
+  
+  <script>
+  function enableOther(cbox, other)
+  {
+	other.disabled = !cbox.checked;
+  }
+  
+  function hideShowOther(cbox, other)
+  {
+	if (cbox.checked)
+	{
+		$(other).slideDown();
+	}
+	else
+	{
+		$(other).slideUp();
+	}
+  }
+  
+  function confirmRegistration(button,payOptions)
+  {
+	$(button).fadeOut();
+	$(payOptions).slideDown();
+  }
+  
+  function getFormAction(form)
+  {
+	//var return_val = validfunc();
+	//if(return_val){
+		postToGoogle();
+	
+		var payMethod = $("input[type='radio'][name='payment']:checked").val();
+		var cost = $("#totalcost").text();
+	
+		if ( payMethod == "paypal" )
+		{
+			form.action = "https://www.sandbox.paypal.com/cgi-bin/webscr";
+			window.open("paypalTip.html", "If paying with credit/debit card...", "width=400,height=540,scrollbars=yes,toolbar=no,location=no,menubar=no");
+		}
+		else if (payMethod == "check" )
+		{
+			form.action = "./paymail.html?cost=" + cost;
+		}
+		else
+			form.action = "./payother.html";
+	//}
+	//else 
+	//	alert("Please fill in the required fileds!");
+  }
+
+	//setInterval(updateCost, 350); 
+	
+  </script>
+</body>
+</html>
+
